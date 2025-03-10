@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_components/router/app_routes.dart';
 
 import 'screens/screens.dart';
 
@@ -10,16 +11,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Material App',
-        //home: CardScreen(),
-        initialRoute: 'home',
-        routes: {
-          'home': (context) => HomeScreen(),
-          'listview1': (context) => ListView1Screen(),
-          'listview2': (context) => ListView2Screen(),
-          'alert': (context) => AlertScreen(),
-          'card': (context) => CardScreen()
-          });
+      debugShowCheckedModeBanner: false,
+      title: 'Material App',
+      initialRoute: AppRoutes.initialRoute,
+      routes: AppRoutes.routes,
+      onGenerateRoute: (settings) {
+        return MaterialPageRoute(
+          builder: (context) => const AlertScreen(),
+        );
+      },
+    );
   }
 }
